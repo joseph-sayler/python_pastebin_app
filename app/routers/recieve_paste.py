@@ -3,7 +3,7 @@ from app.database import db, Pastes
 from fastapi import HTTPException
 from pydantic import BaseModel
 from secrets import token_urlsafe
-from config import Database_config as config
+from config import Config
 
 
 class Incoming_Data(BaseModel):
@@ -14,7 +14,7 @@ class Incoming_Data(BaseModel):
 @router.post("/paste/")
 def recieve_paste(data: Incoming_Data):
     try:
-        identifier = token_urlsafe(int(config.TOKEN_SIZE))
+        identifier = token_urlsafe(int(Config.TOKEN_SIZE))
         title = data.title
         paste_text = data.text
         paste = Pastes(identifier=identifier,

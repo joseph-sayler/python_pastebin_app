@@ -1,5 +1,5 @@
 from datetime import datetime
-from config import Database_config as config
+from config import Config
 from sqlalchemy import Column, Text, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -11,7 +11,7 @@ class SQL_Pastes(Base):
 
     __tablename__ = "pastes"
 
-    identifier = Column(String(config.TOKEN_SIZE), nullable=False,
+    identifier = Column(String(Config.TOKEN_SIZE), nullable=False,
                         unique=True, primary_key=True)
     title = Column(Text, nullable=False)
     paste_text = Column(Text, nullable=False)

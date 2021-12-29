@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
 
 
-class Database_config:
+class Config:
     DATABASE_TYPE = os.environ.get('DATABASE_TYPE', None)
     DATABASE_URI = os.environ.get('DATABASE_URI', None)
     FAUNA_SECRET_KEY = os.environ.get("FAUNA_SECRET_KEY", None)

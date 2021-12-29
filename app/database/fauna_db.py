@@ -1,6 +1,6 @@
 from faunadb import query as q
 from faunadb.client import FaunaClient
-from config import Database_config as config
+from config import Config
 from datetime import datetime
 
 
@@ -11,7 +11,7 @@ class Fauna_DB:
     _collections = None
     _index = None
 
-    def __init__(self, config=config):
+    def __init__(self, config=Config):
         self._client = FaunaClient(
             secret=config.FAUNA_SECRET_KEY,
             domain=config.FAUNA_DOMAIN,

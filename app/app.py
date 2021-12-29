@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from app.routers import get_paste, recieve_paste
+from config import Config
+
 
 app = FastAPI()
 
