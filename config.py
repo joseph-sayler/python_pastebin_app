@@ -14,6 +14,7 @@ class Config:
     FAUNA_COLLECTION = os.environ.get("FAUNA_COLLECTION", None)
     FAUNA_INDEX = os.environ.get("FAUNA_INDEX", None)
     TOKEN_SIZE = os.environ.get("TOKEN_SIZE", 5)
+    ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS","http://localhost:8000").split(",")
 
 
 class Test_config(object):
