@@ -1,0 +1,5 @@
+fastapi[all]==0.100.0
+faunadb==4.1.1
+SQLAlchemy==1.4.29
+pytest==5.2
+pyyaml==6.0.1
