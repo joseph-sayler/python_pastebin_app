@@ -1,7 +1,9 @@
+from datetime import datetime
+
 from faunadb import query as q
 from faunadb.client import FaunaClient
+
 from config import Config
-from datetime import datetime
 
 
 class Fauna_DB:
@@ -16,7 +18,7 @@ class Fauna_DB:
             secret=config.FAUNA_SECRET_KEY,
             domain=config.FAUNA_DOMAIN,
             port=443,
-            scheme="https"
+            scheme="https",
         )
         self._collections = config.FAUNA_COLLECTION
         self._index = config.FAUNA_INDEX
@@ -26,12 +28,10 @@ class Fauna_DB:
 
     def commit(self):
         # convert to datetime string for storing in fauna
-        self.__data.date = datetime.strftime(
-            self.__data.date, "%Y-%m-%d %H:%M:%S.%f")
+        self.__data.date = datetime.strftime(self.__data.date, "%Y-%m-%d %H:%M:%S.%f")
         # convert __data to dict for storing in fauna
         output = self.__data.__dict__
-        self.__client.query(q.create(q.collection(
-            self._collections), {"data": output}))
+        self.__client.query(q.create(q.collection(self._collections), {"data": output}))
 
     def query(self, cls):
         # cls is the fauna db model class used in query
@@ -41,10 +41,12 @@ class Fauna_DB:
     def get(self, identifier):
         try:
             results = self._client.query(
-                q.get(q.match(q.index(self._index), identifier)))
+                q.get(q.match(q.index(self._index), identifier))
+            )
             # convert to datetime object for use in application
             results["data"]["date"] = datetime.strptime(
-                results["data"]["date"], "%Y-%m-%d %H:%M:%S.%f")
+                results["data"]["date"], "%Y-%m-%d %H:%M:%S.%f"
+            )
             results_class = self.__class
             result_obj = results_class()
             result_obj._from_dict(results["data"])

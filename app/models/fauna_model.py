@@ -19,8 +19,8 @@ class Fauna_Pastes:
             "identifier": self.identifier,
             "title": self.title,
             "text": self.paste_text,
-            "date": self.date.strftime("%b %d, %Y @ %I:%M %p")
+            "date": self.date.strftime("%b %d, %Y @ %I:%M %p"),
         }
 
     def __repr__(self):
-        return f'<Paste {self.identifier}>'
+        return f"<Paste {self.identifier}>"

@@ -1,7 +1,8 @@
-from app.routers import router
-from app.database import db, Pastes
 from fastapi import HTTPException
 from pydantic import BaseModel
+
+from app.database import Pastes, db
+from app.routers import router
 
 
 class Outgoing_Data(BaseModel):

@@ -1,8 +1,10 @@
-from app.routers import router
-from app.database import db, Pastes
+from secrets import token_urlsafe
+
 from fastapi import HTTPException
 from pydantic import BaseModel
-from secrets import token_urlsafe
+
+from app.database import Pastes, db
+from app.routers import router
 from config import Config
 
 
@@ -17,11 +19,9 @@ def recieve_paste(data: Incoming_Data):
         identifier = token_urlsafe(int(Config.TOKEN_SIZE))
         title = data.title
         paste_text = data.text
-        paste = Pastes(identifier=identifier,
-                       paste_text=paste_text, title=title)
+        paste = Pastes(identifier=identifier, paste_text=paste_text, title=title)
         db.add(paste)
         db.commit()
         return {"id": identifier}
     except:
         raise HTTPException(status_code=500, detail="Internal Server Error")
-    
