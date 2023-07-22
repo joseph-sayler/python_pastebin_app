@@ -1,4 +1,3 @@
-import json
 import uuid
 from secrets import token_urlsafe
 
@@ -28,9 +27,9 @@ def test_get_paste_fail():
     assert response.status_code == 404
 
 
-def test_receive_past_success():
+def test_receive_paste_success():
     data = {"title": token_urlsafe(7), "text": str(uuid.uuid4())}
-    response = client.post("/paste/", json.dumps(data))
+    response = client.post("/paste/", json=data)
     assert response.status_code == 200
 
 
