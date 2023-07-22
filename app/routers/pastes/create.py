@@ -1,16 +1,11 @@
 from secrets import token_urlsafe
 
 from fastapi import HTTPException
-from pydantic import BaseModel
 
 from app.database import Pastes, db
+from app.models import Incoming_Data
 from app.routers import router
 from config import Config
-
-
-class Incoming_Data(BaseModel):
-    title: str
-    text: str
 
 
 @router.post("/paste/")

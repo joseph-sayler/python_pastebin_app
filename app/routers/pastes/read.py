@@ -1,15 +1,8 @@
 from fastapi import HTTPException
-from pydantic import BaseModel
 
 from app.database import Pastes, db
+from app.models import Outgoing_Data
 from app.routers import router
-
-
-class Outgoing_Data(BaseModel):
-    identifier: str
-    title: str
-    text: str
-    date: str
 
 
 @router.get("/id/{paste_id}", response_model=Outgoing_Data)
