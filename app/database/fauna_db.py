@@ -51,5 +51,6 @@ class Fauna_DB:
             result_obj = results_class()
             result_obj._from_dict(results["data"])
             return result_obj
-        except:
+        except Exception as e:
+            print(f"ERROR: {e}")  # FIXME replace this with proper logging
             return None
